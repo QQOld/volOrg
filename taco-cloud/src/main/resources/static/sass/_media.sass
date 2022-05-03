@@ -1,0 +1,76 @@
+@media (max-width: 1199px)
+  .navbar
+    &-list
+      &__item
+        &:not(:last-child)
+          margin-right: 20px
+
+@media (max-width: 991px)
+  .navbar
+    &__button
+      font-size: 14px
+      padding: 3px 10px
+      border-radius: 20px
+      min-width: 130px
+      max-width: 130px
+      &:last-child
+        margin-left: 0
+        margin-top: 6px
+    &__buttons
+      flex-direction: column
+      align-items: flex-end
+  .main
+    &-text
+      padding: 60px 0
+  .search
+    &-req
+      padding: 55px 0
+  .vol
+    &-req
+      padding: 55px 0
+
+@media (max-width: 767px)
+  .container
+    padding: 0 50px
+  .navbar
+    &-list
+      display: none
+  .nav
+    &-list
+      &--1
+        display: flex
+  .main
+    &-text
+      &__title
+        font-size: 34px
+  .search
+    &-req
+      &__text
+        margin-bottom: 20px
+  .vol
+    &-req
+      &__text
+        margin-bottom: 20px
+  .footer
+    &__text
+      text-align: center
+    &__logo
+      align-self: center
+
+    &__icons
+      justify-content: center
+@media (max-width: 575px)
+  .center
+    &--sm
+      text-align: center
+  .search
+    &-req
+      &__text
+        text-align: center
+  .vol
+    &-req
+      &__text
+        text-align: center
+  .footer
+    &__list
+      margin-bottom: 30px

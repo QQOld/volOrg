@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MVC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/reset.css}" />
+    <link rel="stylesheet" th:href="@{/css/swiper-bundle.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.rtl.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <nav class="navbar-menu">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <a class="logo" href="/index">Волонтёры33</a>
+                </div>
+                <div class="col-4">
+                    <ul class="navbar-list">
+                        <li class="navbar-list__item"><a href="/index">Главная</a></li>
+                        <li class="navbar-list__item"><a href="/index">Новости</a></li>
+                        <li class="navbar-list__item"><a href="/index">О нас</a></li>
+                    </ul>
+                </div>
+                <div class="col-4">               
+                        <div class="navbar__buttons">
+                            <a class="button navbar__button">Регистрация</a>
+                            <a class="button navbar__button">Войти</a>
+                        </div>
+                    <!--{
+                        <div class="navbar__buttons">
+                            <a class="button navbar__button" asp-controller="Account" asp-action="EditProfile">Профиль</a>
+                            <form class="button-form navbar__button" method="post" asp-controller="Account" asp-action="Logout">
+                                <input class="button button-exit" type="submit" value="Выход">
+                            </form>
+                        </div>
+                    }-->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main role="main">
+        <section class="main-text">
+            <div class="container">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-6">
+                        <h3 class="main-text__title">Потеряться – не значит пропасть</h3>
+                        <p class="main-text__text paragraph">
+                            Поисково-спасательный отряд “Волонтёры33” ищет тех, кто
+                            потерялся в лесу и городе.
+                        </p>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="search-req">
+            <div class="container">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col">
+                        <p class="search-req__text paragraph">
+                            Наше движение организовывает поисковые операции, собирая отряд
+                            волонтёров
+                        </p>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-3">
+                        <a class="button main-button search-req__button" th:href="@{/searchReq}" >Заявка на поиск</a>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </div>
+        </section>
+        <!-- /.search-req -->
+
+        <section class="vol-req">
+            <div class="container">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-3">
+                        <a class="button main-button vol-req__button" th:href="@{/volReq}" >Стать волонтёром</a>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-5">
+                        <p class="vol-req__text paragraph">
+                            Если хочешь стать частью нашего движения, то заполни форму
+                            регистрации волонтёра
+                        </p>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="hr-line"></div>
+
+        <section class="main-operations">
+            <div class="container">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col">
+                        <p class="main-operations__text">
+                            Ниже вы можете просмотреть список текущих операций, а также,
+                            имея статус волонтёра, присоединиться к поискам
+                        </p>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-4 text-center">
+                        <a class="button main-button main-operations__button">Список операций</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="hr-line"></div>
+
+        <section class="miss-people">
+            <div class="container">
+                <p class="miss-people__title">Их ищут:</p>
+                <!-- Slider main container -->
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div th:each="op : ${operations}" class="swiper-slide">
+                        	<img class="swiper-image" src="${op.searchRequest.photo}" alt="" />
+                        </div>                      
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="hr-line"></div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-3 offset-1">
+                    <a href="/home/index" class="logo footer__logo">Волонтёры33</a>
+                    <p class="footer__text">Волонтёрская организация по поиску людей</p>
+                    <div class="footer__icons">
+                        <a href="" class="footer__icon">
+                            <img src="img/вк.png" alt="" />
+                        </a>
+                        <a href="" class="footer__icon">
+                            <img src="img/ватсап.png" alt="" />
+                        </a>
+                        <a href="" class="footer__icon">
+                            <img src="img/инст.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-2 offset-1">
+                    <h3 class="footer__subtitle">Навигация</h3>
+                    <ul class="footer__list">
+                        <li class="footer__item footer__link">
+                            <a href="/home/index">В начало</a>
+                        </li>
+                        <li class="footer__item footer__link"><a href="#">Новости</a></li>
+                        <li class="footer__item footer__link"><a href="#">О нас</a></li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <h3 class="footer__subtitle">Контакты</h3>
+                    <ul class="footer__list">
+                        <li class="footer__item">8-800-700-54-52</li>
+                        <li class="footer__item">volorg33@mail.ru</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="@{/js/swiper-bundle.min.js}"></script>
+    <script src="@{/js/main.js}"></script>
+    <script src="@{/lib/jquery/dist/jquery.min.js}"></script>
+    <script src="@{/lib/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script src="@{/js/site.js}" asp-append-version="true"></script>
+</body>
+</html>

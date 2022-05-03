@@ -1,0 +1,62 @@
+.chat
+  display: flex
+  flex-grow: 1
+  flex-direction: column
+  max-width: 55%
+  margin: 0 auto
+  height: 100vh
+  max-height: 100%
+  position: relative
+  &-body
+    display: flex
+    background-color: #eee
+    flex-grow: 1
+    padding: 10px
+    flex-direction: column
+  &__input
+    flex-grow: 2
+    border-radius: 5px 0 0 5px
+    border: 0px solid #eee
+    padding: 0 5px
+  &__button
+    padding: 0
+    flex-grow: 1
+    overflow: auto
+    border-radius: 0 5px 5px 0
+    border: none
+    border-left: 1px solid #000000
+    background-color: #FFFFFF
+  &-input
+    background-color: #3D8BFD
+    min-height: 85px
+    z-index: 100
+    padding: 25px 50px
+    display: flex
+    flex-direction: row
+  &__arrow
+    &-back
+      position: absolute
+      top: 5px
+      left: 8px
+    &-link
+      &:hover
+        opacity: 0.7
+
+.message
+  display: flex
+  flex-direction: row
+  &:first-child
+    margin-top: auto
+  &__username
+    font-weight: bold
+    min-width: 100px
+    text-align: right
+    margin-right: 10px
+  &__text
+    word-wrap: break-word
+    flex-grow: 4
+    max-width: 400px
+    margin-right: 10px
+  &__time
+    min-width: 100px
+    text-align: center

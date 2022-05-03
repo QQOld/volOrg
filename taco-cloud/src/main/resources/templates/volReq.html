@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+			xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+			layout:decorate="_layout">
+<head>
+    <title>Keep It Simple and Steady.</title>
+</head>
+
+	<div layout:fragment="content">
+		 	
+		<h1 class="profile__title">Введите данные</h1>
+
+    <form method="post" th:object="${volReq}">
+        
+        <div>
+        
+            <div class="form-group">
+                <label for="phone" class="control-label profile__label">Телефон</label><br />
+                <input th:field="*{phone}" class="form-control profile__input" />
+                <span class="validationError"
+					            th:if="${#fields.hasErrors('phone')}"
+					            th:errors="*{phone}">Неверные данные</span>
+            </div>
+
+            <div class="form-group">
+                <label for="age" class="control-label profile__label">Возраст</label><br />
+                <input th:field="*{age}" class="form-control profile__input" />
+                <span class="validationError"
+					            th:if="${#fields.hasErrors('phone')}"
+					            th:errors="*{phone}">Неверные данные</span>
+            </div>
+
+            <div class="form-group">
+                <label for="sex" class="control-label profile__label">Пол:</label><br />
+                <input type="radio" th:field="*{sex}" value="Мужской" />Мужской<br />
+                <input type="radio" th:field="*{sex}" value="Женский" />Женский<br />
+                <span class="validationError"
+					            th:if="${#fields.hasErrors('sex')}"
+					            th:errors="*{sex}">Неверные данные</span>
+            </div>
+
+            <div class="form-group">
+                <label for="livArea" class="control-label profile__label">Область проживания</label><br />
+                <input th:field="*{livArea}" class="form-control profile__input" />
+                <span class="validationError"
+					            th:if="${#fields.hasErrors('livArea')}"
+					            th:errors="*{livArea}">Неверные данные</span>
+            </div>
+
+            <input type="submit" value="Отправитm" class="button-secondary profile__button" />
+
+        </div>
+    </form>
+    <a class="main-link profile__main-link" th:href="@{/index}">Назад</a>
+		 	
+	</div>
+</html>     

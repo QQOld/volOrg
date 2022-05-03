@@ -1,0 +1,19 @@
+.operations
+  &-group
+    &__row
+      display: flex
+      flex-direction: column
+    &__label
+      display: flex
+      cursor: pointer
+      margin-bottom: 10px
+      &::after
+        content: ''
+        background-image: url('../img/arrow.png')
+        width: 24px
+        height: 24px
+        background-repeat: no-repeat
+        background-position: center
+    &__list
+      display: none
+      margin-bottom: 20px
