@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Авторизация</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/reset.css}" />
+    <link rel="stylesheet" th:href="@{/css/swiper-bundle.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.rtl.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+    <div class="container">
+        <main role="main" class="profile">
+            <div class="profile-wrapper">
+					    <h1 class="profile__title">Авторизация</h1>
+					    
+					    <div class="validationError" th:if="${param.error != null}">
+		      				Проверьте правильность почты и пароля.
+		    			</div>
+					    
+					    <form method="post"
+					          th:action="@{/login}"				         
+					          id="loginForm">			
+					          	       
+					        <div>					        							        					
+					            <div class="form-group">
+					                <label for="email" class="control-label profile__label">Имя:</label><br />
+					                <input name="email" id="email" class="form-control profile__input" />					             
+					            </div>
+					
+					            <div class="form-group">
+					                <label for="password" class="control-label profile__label">Пароль:</label><br />
+					                <input type="password" name="password" id="password" class="form-control profile__input" />				                
+					            </div>
+					
+					            <input type="submit"
+					                   value="Войти"
+					                   class="button-secondary profile__button" />
+					        </div>
+					    </form>
+
+			    <div class="profile__links">
+			        <a class="main-link profile__main-link" th:href="@{/register}">Регистрация</a>
+			        <a class="main-link profile__main-link" th:href="@{/index}">На главную</a>
+			    </div>
+					</div>
+        </main>
+    </div>
+
+    <script src="@{/lib/jquery/dist/jquery.min.js}"></script>
+    <script src="@{/lib/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script src="@{/js/site.js}"></script>
+</body>
+</html>

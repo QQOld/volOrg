@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Волонтёры33</title>
+    <title>Управление</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap"
@@ -47,9 +47,33 @@
 
     <div class="container">
         <main role="main" class="main-menu">
-            <div layout:fragment="content">
-				    	
-						</div>
+            <h1 class="display-4">Welcome</h1>
+  
+            <a class="main-link profile__main-link" th:href="@{/adminPanel/}">Добавить пользователя</a>
+            
+            <a class="main-link profile__main-link" th:href="@{/adminPanel/volRequests}">Заявки в волонтёры</a>
+            
+            <a class="main-link profile__main-link" th:href="@{/index}">Заявки на поиск</a>
+            
+            <a class="main-link profile__main-link" th:href="@{/index}">Операции</a>   
+            
+            <table class="table">
+                <tr><th>Имя</th><th>Email</th><th></th></tr>
+                  <tr th:each="u : ${users}">
+                      <td th:text="${u.getSurName}"></td> 
+                      <td th:text="${u.getEmail}"></td>
+                      <td>
+                        <form asp-controller="Admin" asp-action="Delete" asp-route-id="@user.Id" method="post">
+                          <a class="btn btn-sm btn-primary" asp-controller="Admin" asp-action="Edit" asp-route-id="@user.Id">Изменить</a>
+                          <button type="submit" class="btn btn-sm btn-danger">
+                            Удалить
+                          </button>
+                        </form>
+                      </td>
+                  </tr>
+            </table>
+            <br />
+            <a class="main-link" th:href="@{/profile}">Назад</a>
         </main>
     </div>
 

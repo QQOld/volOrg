@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Регистрация</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/reset.css}" />
+    <link rel="stylesheet" th:href="@{/css/swiper-bundle.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.rtl.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <main role="main" class="profile">
+            <div class="profile-wrapper">
+					    <h1 class="profile__title">Регистрация</h1>
+					    <form th:action="${'/register'}" th:object="${registrationForm}" method="post">					    
+					
+					            <div class="form-group">
+					            		<span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Неверные данные<br /></span>
+					                <label for="name" class="control-label profile__label">Имя:</label><br />
+					                <input th:field="*{name}" class="form-control profile__input" />	                
+					            </div>
+					
+					            <div class="form-group">
+					                <span class="validationError" th:if="${#fields.hasErrors('surName')}" th:errors="*{surName}">Неверные данные<br /></span>					            
+					                <label for="surName" class="control-label profile__label">Фамилия:</label><br />
+					                <input th:field="*{surName}" class="form-control profile__input" />
+					            </div>           
+					
+					            <div class="form-group">
+					                <span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Неверные данные<br /></span>					            
+					                <label for="email" class="control-label profile__label">Электронный адрес:</label><br />
+					                <input th:field="*{email}" class="form-control profile__input" />
+					            </div>
+					
+					            <div class="form-group">
+					                <span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Неверные данные<br /></span>					            
+					                <label for="password" class="control-label profile__label">Пароль:</label><br />
+					                <input type="password" th:field="*{password}" class="form-control profile__input" />
+					            </div>
+					
+					            <input type="submit"
+					                   value="Регистрация"
+					                   class="button-secondary profile__button" />
+					    </form>
+
+			    <div class="profile__links">
+			        <a class="main-link profile__main-link" th:href="@{/login}">Войти</a>
+			        <a class="main-link profile__main-link" th:href="@{/index}">На главную</a>
+			    </div>
+					</div>
+        </main>
+    </div>
+
+    <script src="@{/lib/jquery/dist/jquery.min.js}"></script>
+    <script src="@{/lib/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script src="@{/js/site.js}"></script>
+</body>
+</html>

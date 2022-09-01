@@ -3,71 +3,71 @@
 			xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 			layout:decorate="_layout">
 <head>
-    <title>Keep It Simple and Steady.</title>
+    <title>Заявка на поиск</title>
 </head>
 
 	<div layout:fragment="content">
 		 	
 		<h1 class="profile__title">Заявка на поиск</h1>
 
-    <form method="post" th:object="${searchReq}">
+    <form th:action="${'/searchReq'}" th:object="${searchRequest}" method="post">
         
         <div>
             <div class="form-group">
-                <label for="fullName" class="control-label profile__label">ФИО:</label><br />
-                <input th:field="*{fullName}" class="form-control profile__input" />
-                <span class="validationError"
+            		<span class="validationError"
 					            th:if="${#fields.hasErrors('fullName')}"
-					            th:errors="*{fullName}">Неверные данные</span>
+					            th:errors="*{fullName}">Неверные данные</span><br />
+                <label for="fullName" class="control-label profile__label">ФИО:</label><br />
+                <input th:field="*{fullName}" class="form-control profile__input" />               
             </div>
 
             <div class="form-group">
-                <label for="age" class="control-label profile__label">Возраст:</label><br />
-                <input th:field="*{age}" class="form-control profile__input" />
-                <span class="validationError"
+            		<span class="validationError"
 					            th:if="${#fields.hasErrors('age')}"
-					            th:errors="*{age}">Неверные данные</span>
+					            th:errors="*{age}">Неверные данные</span><br />
+                <label for="age" class="control-label profile__label">Возраст:</label><br />
+                <input th:field="*{age}" class="form-control profile__input" />                
             </div>
 
             <div class="form-group">
+            		<span class="validationError"
+					            th:if="${#fields.hasErrors('sex')}"
+					            th:errors="*{sex}">Неверные данные</span><br />
                 <label for="sex" class="control-label profile__label">Пол:</label><br />
                 <input type="radio" th:field="*{sex}" value="Мужской" />Мужской<br />
-                <input type="radio" th:field="*{sex}" value="Женский" />Женский<br />
-                <span class="validationError"
-					            th:if="${#fields.hasErrors('sex')}"
-					            th:errors="*{sex}">Неверные данные</span>
+                <input type="radio" th:field="*{sex}" value="Женский" />Женский<br />             
             </div>
 
             <div class="form-group">
-                <label for="missArea" class="control-label profile__label">Область пропажи:</label><br />
-                <input th:field="*{missArea}" class="form-control profile__input" />
-                <span class="validationError"
+            		<span class="validationError"
 					            th:if="${#fields.hasErrors('missArea')}"
-					            th:errors="*{missArea}">Неверные данные</span>
+					            th:errors="*{missArea}">Неверные данные</span><br />
+                <label for="missArea" class="control-label profile__label">Область пропажи:</label><br />
+                <input th:field="*{missArea}" class="form-control profile__input" />                
             </div>
 
             <div class="form-group">
-                <label for="missTime" class="control-label profile__label">Время пропажи:</label><br />
-                <input th:field="*{missTime}" class="form-control profile__input" />
-                <span class="validationError"
+            		<span class="validationError"
 					            th:if="${#fields.hasErrors('missTime')}"
-					            th:errors="*{missTime}">Неверные данные</span>
+					            th:errors="*{missTime}">Неверные данные</span><br />
+                <label for="missTime" class="control-label profile__label">Время пропажи:</label><br />
+                <input th:field="*{missTime}" class="form-control profile__input" />              
             </div>
 
             <div class="form-group">
-                <label for="addInf" class="control-label profile__label">Дополнительная информация:</label><br />
-                <textarea th:field="*{addInf}" class="form-control profile__input"></textarea>
-                <span class="validationError"
+            		<span class="validationError"
 					            th:if="${#fields.hasErrors('addInf')}"
-					            th:errors="*{addInf}">Неверные данные</span>
+					            th:errors="*{addInf}">Неверные данные</span><br />
+                <label for="addInf" class="control-label profile__label">Дополнительная информация:</label><br />
+                <textarea th:field="*{addInf}" class="form-control profile__input"></textarea>               
             </div>
 
             <div class="form-group">
-                <label for="photo" class="control-label profile__label">Фото:</label><br />
-                <input th:field="*{photo}" type="file" accept="image/*" class="form-control-file profile__input" />
-                <span class="validationError"
+            		<span class="validationError"
 					            th:if="${#fields.hasErrors('photo')}"
-					            th:errors="*{photo}">Неверные данные</span>
+					            th:errors="*{photo}">Неверные данные</span><br />
+                <label for="photo" class="control-label profile__label">Фото:</label><br />
+                <input th:field="*{photo}" type="file" accept="image/*" class="form-control-file profile__input" />                
             </div>
 
             <input type="submit" value="Отправить" class="button-secondary profile__button" />

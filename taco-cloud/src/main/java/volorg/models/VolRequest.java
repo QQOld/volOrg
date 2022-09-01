@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -14,17 +16,22 @@ public class VolRequest {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long id;
+	private Long id;
     
-    public String phone;
+	@NotNull(message="Введите номер телефона")
+	@Size(min=9, message="Введите номер телефона")
+	private String phone;
     
-    public int age;
+	@NotNull(message="Введите возраст")
+	private int age;
     
-    public String sex;
+	@NotNull(message="Укажите пол")
+	private String sex;
     
-    public String livArea;
+	@NotNull(message="Введите область проживания")
+	private String livArea;
     
-    public String status;
+	private String status;
     
     @OneToOne
     private User user;

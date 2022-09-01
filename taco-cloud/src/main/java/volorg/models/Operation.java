@@ -22,15 +22,15 @@ public class Operation {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long id;
     
-    public String status;
-    
-    @OneToOne(optional = false)
-    public SearchRequest searchRequest;
-    
-    @ManyToMany
-    public List<User> users = new ArrayList<User>();
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "operation")
-    public List<Comment> comments = new ArrayList<Comment>();
+  public String status;
+  
+  @OneToOne(optional = false)
+  public SearchRequest searchRequest;
+  
+  @ManyToMany
+  public List<User> users = new ArrayList<User>();
+  
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "operation")
+  public List<Comment> comments = new ArrayList<Comment>();
 
 }
