@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+<head>
+    <title>Заявки на поиск</title>
+</head>
+
+  <div layout:fragment="content">
+    <main role="main" class="main-menu">
+      <h1 class="display-4">Заявки на поиск</h1>
+      <table class="table">
+        <tr><th>Имя</th><th>Email</th><th></th></tr>
+          <tr th:each="s : ${searchRequests}">
+            <td th:text="${s.getUser.getSurName + ' ' + s.getUser.getName}"></td>
+            <td th:text="${s.user.getEmail}"></td>
+            <td>
+              <a class="btn btn-sm btn-primary" th:href="@{/adminPanel/searchRequests/{id}(id=${s.getId})}">Просмотреть</a>
+            </td>
+          </tr>
+      </table>
+      <br />
+      <a class="main-link" th:href="@{/adminPanel}">Назад</a>
+    </main>
+  </div>
+</html>

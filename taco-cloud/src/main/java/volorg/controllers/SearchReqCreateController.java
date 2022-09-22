@@ -3,6 +3,7 @@ package volorg.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
@@ -37,12 +38,14 @@ public class SearchReqCreateController {
 	}
 	
 	@PostMapping
-	public String addSearchReq(@Valid SearchRequest searchRequest, BindingResult bindingResult) {
+	public String addSearchReq(@Valid SearchRequest searchRequest, BindingResult bindingResult, @AuthenticationPrincipal User curUser) {
 	  if (bindingResult.hasErrors()) {
 	    return "searchReq";
 	  }
 	 
 	  searchRequest.setStatus("Ожидание");
+	  searchRequest.setUser(curUser);
+	  
 	  searchReqRepo.save(searchRequest);
 	  return "redirect:/index";
 	}

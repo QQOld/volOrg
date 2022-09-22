@@ -20,17 +20,21 @@ public class Operation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long id;
+	private Long id;
     
-  public String status;
+	private String status;
   
   @OneToOne(optional = false)
-  public SearchRequest searchRequest;
+  private SearchRequest searchRequest;
   
   @ManyToMany
-  public List<User> users = new ArrayList<User>();
+  private List<User> users = new ArrayList<User>();
   
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "operation")
-  public List<Comment> comments = new ArrayList<Comment>();
+  private List<Comment> comments = new ArrayList<Comment>();
 
+  @Override
+  public String toString() {
+      return status;
+  }
 }

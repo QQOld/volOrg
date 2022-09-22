@@ -35,7 +35,7 @@
                   </div>
                   
                   <div class="navbar__buttons" sec:authorize="isAuthenticated()">
-                      <a class="button navbar__button" th:href="@{/register}">Профиль</a>
+                      <a class="button navbar__button" th:href="@{/profile}">Профиль</a>
                       <form class="button-form navbar__button" method="post" th:action="@{/logout}">
                           <input class="button button-exit" type="submit" value="Выход">
                       </form>
@@ -47,15 +47,15 @@
 
     <div class="container">
         <main role="main" class="main-menu">
-            <h1 class="display-4">Welcome</h1>
+            <h1 class="display-4">Управление</h1>
   
             <a class="main-link profile__main-link" th:href="@{/adminPanel/}">Добавить пользователя</a>
             
             <a class="main-link profile__main-link" th:href="@{/adminPanel/volRequests}">Заявки в волонтёры</a>
             
-            <a class="main-link profile__main-link" th:href="@{/index}">Заявки на поиск</a>
+            <a class="main-link profile__main-link" th:href="@{/adminPanel/searchRequests}">Заявки на поиск</a>
             
-            <a class="main-link profile__main-link" th:href="@{/index}">Операции</a>   
+            <a class="main-link profile__main-link" th:href="@{/adminPanel/operations}">Операции</a>   
             
             <table class="table">
                 <tr><th>Имя</th><th>Email</th><th></th></tr>

@@ -7,21 +7,21 @@
 </head>
 
   <div layout:fragment="content">
-      
-    <h1 class="display-4">Заявки в волонтёры</h1>
-
-    <table class="table">
-      <tr><th>Пользователь</th><th>Email</th><th>Номер телефона</th><th></th></tr>
-        <tr th:each="v : ${volRequests}">
-          <td th:text="${v.getUser.getSurName + " " + v.getUser.getName}"></td>
-          <td th:text="${v.user.getEmail}"></td>
-          <td th:text="${v.getPhone}"></td>
-          <td>
-            <a class="btn btn-sm btn-primary" asp-route-id="@request.Id">Просмотреть</a>
-          </td>
-        </tr>
-    </table>
-    <br />
-    <a class="main-link" th:href="@{/adminPanel}">Назад</a>
+    <main role="main" class="main-menu">
+      <h1 class="display-4">Заявки в волонтёры</h1>
+      <table class="table">
+        <tr><th>Пользователь</th><th>Email</th><th>Номер телефона</th><th></th></tr>
+          <tr th:each="v : ${volRequests}">
+            <td th:text="${v.getUser.getSurName + ' ' + v.getUser.getName}"></td>
+            <td th:text="${v.user.getEmail}"></td>
+            <td th:text="${v.getPhone}"></td>
+            <td>
+              <a class="btn btn-sm btn-primary" th:href="@{/adminPanel/volRequests/{id}(id=${v.getId})}">Просмотреть</a>
+            </td>
+          </tr>
+      </table>
+      <br />
+      <a class="main-link" th:href="@{/adminPanel}">Назад</a>
+    </main>
   </div>
 </html>

@@ -49,7 +49,7 @@ public class User implements UserDetails {
 	@NonNull
 	private String password;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
   private List<Role> roles = new ArrayList<Role>();
 	
 	@OneToMany(mappedBy ="user")

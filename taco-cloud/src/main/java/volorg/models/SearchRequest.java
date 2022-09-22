@@ -22,35 +22,35 @@ public class SearchRequest {
     
 	@NotNull(message="Введите ФИО")
 	@Size(min=4, message="Введите ФИО")
-    private String fullName;
+  private String fullName;
     
 	@NotNull(message="Введите возраст")
-    private int age;
+  private int age;
     
 	@NotNull(message="Укажите пол")
-    private String sex;
+  private String sex;
     
 	@NotNull(message="Введите область пропажи")
 	@Size(min=4, message="Введите область пропажи")
-    private String missArea;
+  private String missArea;
     
 	@NotNull(message="Введите время пропажи")
 	@Size(min=4, message="Введите время пропажи")
-    private String missTime;
-    
-    private String addInf;
-    
-    @NotNull(message="Прикрепите фото")
-    private String photo;
-   
-    private String status;
-    
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "searchRequest")
-    private Operation operation;
-    
-    @OneToOne(cascade = CascadeType.ALL, mappedBy ="searchRequest")
-    private Chat chat;
-    
-    @ManyToOne
-    private User user;
+  private String missTime;
+  
+  private String addInf;
+  
+  @NotNull(message="Прикрепите фото")
+  private String photo;
+ 
+  private String status;
+  
+  @OneToOne(cascade = CascadeType.ALL, mappedBy = "searchRequest")
+  private Operation operation;
+  
+  @OneToOne(cascade = CascadeType.ALL, mappedBy ="searchRequest")
+  private Chat chat;
+  
+  @ManyToOne
+  private User user;
 }

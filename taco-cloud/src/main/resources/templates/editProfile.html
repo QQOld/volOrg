@@ -18,9 +18,9 @@
 <body>
     <div class="container">
         <main role="main" class="profile">
-            <div class="profile-wrapper">
+            <div class="profile-wrapper" th:object="${user}">
               <h1 class="profile__title">Профиль</h1>
-              <form method="post" th:action="${'/profile'}" th:object="${user}">
+              <form method="post" th:action="${'/profile'}">
                   <div>
                       <input value="*{id}" th:field="*{id}" type="hidden"/>
                       <input value="*{password}" th:field="*{password}" type="hidden"/>
@@ -47,11 +47,9 @@
                   </div>
               </form>
               <div class="profile__links">
-                  <a class="change-password profile__change-password">Сменить пароль</a>                 
-                  <div sec:authorize="hasRole('ROLE_ADMIN')">
-                    <a class="profile__main-link main-link">Управление</a>
-                    <a class="profile__main-link main-link">Чаты</a>
-                  </div>
+                  <a class="change-password profile__change-password">Сменить пароль</a>                        
+                  <a sec:authorize="hasAuthority('Admin')" th:href="@{/adminPanel}" class="profile__main-link main-link">Управление</a>
+                  <a sec:authorize="hasAuthority('Admin')" th:href="@{/index}" class="profile__main-link main-link">Чаты</a>
                   <a class="main-link" th:href="@{/index}">На главную</a>
               </div>
           </div>

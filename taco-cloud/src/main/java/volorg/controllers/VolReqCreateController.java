@@ -3,6 +3,7 @@ package volorg.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
@@ -35,11 +36,12 @@ public class VolReqCreateController {
 	}
 	
 	@PostMapping
-	public String addVolReq(@Valid VolRequest volRequest, BindingResult bindingResult) {
+	public String addVolReq(@Valid VolRequest volRequest, BindingResult bindingResult, @AuthenticationPrincipal User curUser) {
 	  if (bindingResult.hasErrors()) {
 	    return "volReq";
 	  }
 	 
+	  volRequest.setUser(curUser);
 	  volRequest.setStatus("Ожидание");
 	  
 	  volReqRepo.save(volRequest);

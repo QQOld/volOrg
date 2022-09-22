@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Волонтёры33</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/reset.css}" />
+    <link rel="stylesheet" th:href="@{/css/swiper-bundle.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.rtl.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <nav class="navbar-menu">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <a class="logo" href="/index">Волонтёры33</a>
+                </div>
+                <div class="col-4">
+                    <ul class="navbar-list">
+                        <li class="navbar-list__item"><a href="/index">Главная</a></li>
+                        <li class="navbar-list__item"><a href="/index">Новости</a></li>
+                        <li class="navbar-list__item"><a href="/index">О нас</a></li>
+                    </ul>
+                </div>
+                <div class="col-4">               
+                   <div class="navbar__buttons" sec:authorize="isAnonymous()">
+                       <a class="button navbar__button" th:href="@{/register}" >Регистрация</a>
+                       <a class="button navbar__button" th:href="@{/login}" >Войти</a>
+                   </div>
+
+                   <div class="navbar__buttons" sec:authorize="isAuthenticated()">
+                       <a class="button navbar__button" th:href="@{/profile}">Профиль</a>
+                       <form class="button-form navbar__button" method="post" th:action="@{/logout}">
+                         <input class="button button-exit" type="submit" value="Выход">
+                       </form>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class ="container">
+      <main role="main">
+      <h1 class="display-4">Заявка на поиск</h1>
+
+      <table th:object="${searchRequest}" class="table table-bordered">
+          <tr>
+              <th>Фото</th>
+              <td th:text="Фото" ></td>
+          </tr>
+          <tr>
+              <th>ФИО</th>
+              <td th:text="*{getFullName}" ></td>
+          </tr>
+          <tr>
+              <th>Возраст</th>
+              <td th:text="*{getAge}"></td>
+          </tr>
+          <tr>
+              <th>Пол</th>
+              <td th:text="*{getSex}"></td>
+          </tr>
+          <tr>
+              <th>Область пропажи</th>
+              <td th:text="*{getMissArea}"></td>
+          </tr>
+          <tr>
+              <th>Время пропажи</th>
+              <td  th:text="*{getMissTime}"></td>
+          </tr>
+          <tr>
+              <th>Доп. информация</th>
+              <td  th:text="*{getAddInf}"></td>
+          </tr>
+      </table >
+      
+        <div class="req-buttons">
+          <a class="btn btn-sm btn-primary req-button" th:href="@{{id}/accept(id=${searchRequest.getId})}">Принять</a>
+          <a class="btn btn-sm btn-danger req-button" th:href="@{{id}/decline(id=${searchRequest.getId})}">Отклонить</a>
+        </div>
+        <br />
+        <a class="main-link" th:href="@{/adminPanel/searchRequests}">Назад</a>
+      </main>
+    </div> 
+
+    <script src="@{/js/swiper-bundle.min.js}"></script>
+    <script src="@{/js/main.js}"></script>
+    <script src="@{/lib/jquery/dist/jquery.min.js}"></script>
+    <script src="@{/lib/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script src="@{/js/site.js}" asp-append-version="true"></script>
+</body>
+</html>

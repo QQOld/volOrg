@@ -19,8 +19,10 @@ public class VolOrgApplication {
 	@Bean
   public CommandLineRunner dataLoader(RoleRepository roleRepo) {
 		return args -> {
-			roleRepo.save(new Role("User"));
-			roleRepo.save(new Role("Admin"));
+			
+			if(roleRepo.findByName("User") == null) roleRepo.save(new Role("User"));
+			if(roleRepo.findByName("Admin") == null) roleRepo.save(new Role("Admin"));
+			if(roleRepo.findByName("Volunteer") == null) roleRepo.save(new Role("Volunteer"));
     };
   }
 }
