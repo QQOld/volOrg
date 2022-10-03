@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Чаты</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/reset.css}" />
+    <link rel="stylesheet" th:href="@{/css/swiper-bundle.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.rtl.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+  <div class="container">
+     <div class="chat">
+            <div class="chat-body">
+                <div class="message" th:each="m : ${chat.messages}">
+                    <span class="message__username" th:text="${m.userName}"></span>
+                    <p class="message__text" th:text="${m.text}"></p>
+                    <span class="message__time" th:text="${m.timestamp}"></span>
+                </div>
+            </div>
+            
+            <form th:action="@{/profile/chats/{id}/createMessage(id=${chat.getId})}" method="post" >
+                <div class="chat-input">
+                    <input th:name="text" name="Text" type="text" class="chat__input" />
+                    <button type="submit" class="chat__button">Отправить</button>
+                </div>
+            </form>      
+
+            <a th:href="@{/profile/chats}" class="chat__arrow-link">
+                <img class="chat__arrow-back" src="/img/arrow-back.png" alt="Назад" />
+            </a>
+        </div>
+  </div>
+
+  <script src="@{/js/swiper-bundle.min.js}"></script>
+  <script src="@{/js/main.js}"></script>
+  <script src="@{/lib/jquery/dist/jquery.min.js}"></script>
+  <script src="@{/lib/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+  <script src="@{/js/site.js}" asp-append-version="true"></script>
+</body>
+</html>

@@ -10,47 +10,47 @@
 	   <main role="main" class="main-menu">
         <h1 class="profile__title">Введите данные</h1>
 
-    <form th:action="${'/volReq'}" th:object="${volRequest}" method="post">
-        
-        <div>
-            <div class="form-group">
-                <span class="validationError"
-                      th:if="${#fields.hasErrors('phone')}"
-                      th:errors="*{phone}">Неверные данные</span><br />
-                <label for="phone" class="control-label profile__label">Телефон</label><br />
-                <input th:field="*{phone}" class="form-control profile__input" />
-            </div>
-
-            <div class="form-group">
-                <span class="validationError"
-                      th:if="${#fields.hasErrors('age')}"
-                      th:errors="*{age}">Неверные данные</span><br />
-                <label for="age" class="control-label profile__label">Возраст</label><br />
-                <input th:field="*{age}" class="form-control profile__input" type="number" />                
-            </div>
-
-            <div class="form-group">
-                <span class="validationError"
-                      th:if="${#fields.hasErrors('sex')}"
-                      th:errors="*{sex}">Неверные данные</span><br />
-                <label for="sex" class="control-label profile__label">Пол:</label><br />
-                <input type="radio" th:field="*{sex}" value="Мужской" />Мужской<br />
-                <input type="radio" th:field="*{sex}" value="Женский" />Женский<br />               
-            </div>
-
-            <div class="form-group">
-                <span class="validationError"
-                      th:if="${#fields.hasErrors('livArea')}"
-                      th:errors="*{livArea}">Неверные данные</span><br />
-                <label for="livArea" class="control-label profile__label">Область проживания</label><br />
-                <input th:field="*{livArea}" class="form-control profile__input" />               
-            </div>
-
-            <input type="submit" value="Отправить" class="button-secondary profile__button" />
-
-        </div>
-    </form>
-    <a class="main-link profile__main-link" th:href="@{/index}">Назад</a>
+      <form th:action="${'/volReq'}" th:object="${volRequest}" method="post">
+          
+          <div>
+              <div class="form-group">
+                  <span class="validationError"
+                        th:if="${#fields.hasErrors('phone')}"
+                        th:errors="*{phone}">Неверные данные</span><br />
+                  <label for="phone" class="control-label profile__label">Телефон</label><br />
+                  <input th:field="*{phone}" class="form-control profile__input" />
+              </div>
+  
+              <div class="form-group">
+                  <span class="validationError"
+                        th:if="${#fields.hasErrors('age')}"
+                        th:errors="*{age}">Неверные данные</span><br />
+                  <label for="age" class="control-label profile__label">Возраст</label><br />
+                  <input th:field="*{age}" class="form-control profile__input" type="number" />                
+              </div>
+  
+              <div class="form-group">
+                  <span class="validationError"
+                        th:if="${#fields.hasErrors('sex')}"
+                        th:errors="*{sex}">Неверные данные</span><br />
+                  <label for="sex" class="control-label profile__label">Пол:</label><br />
+                  <input type="radio" th:field="*{sex}" value="Мужской" />Мужской<br />
+                  <input type="radio" th:field="*{sex}" value="Женский" />Женский<br />               
+              </div>
+  
+              <div class="form-group">
+                  <span class="validationError"
+                        th:if="${#fields.hasErrors('livArea')}"
+                        th:errors="*{livArea}">Неверные данные</span><br />
+                  <label for="livArea" class="control-label profile__label">Область проживания</label><br />
+                  <input th:field="*{livArea}" class="form-control profile__input" />               
+              </div>
+  
+              <input type="submit" value="Отправить" class="button-secondary profile__button" />
+  
+          </div>
+      </form>
+      <a class="main-link profile__main-link" th:href="@{/}">Назад</a>
      </main>
 		 		 	
 	</div>

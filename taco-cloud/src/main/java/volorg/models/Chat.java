@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -19,15 +20,15 @@ public class Chat {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long id;
+	private Long id;
 	
 	@OneToOne(optional = false)
-    public SearchRequest searchRequest;
+	private SearchRequest searchRequest;
     
 	@OneToMany(cascade = CascadeType.ALL, mappedBy ="chat")
-    public List<Message> messages = new ArrayList<Message>();
+	private List<Message> messages = new ArrayList<Message>();
     
-	@OneToMany
-    public List<User> users = new ArrayList<User>();
+	@ManyToMany
+	private List<User> users = new ArrayList<User>();
     
 }

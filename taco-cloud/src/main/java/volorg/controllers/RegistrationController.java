@@ -4,6 +4,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,14 +42,20 @@ public class RegistrationController {
   }
   
   @PostMapping
-  public String processRegistration(@Valid RegistrationForm registrationForm, BindingResult bindingResult) {
+  public String processRegistration(@Valid RegistrationForm registrationForm, BindingResult bindingResult, Model model) {
 	if (bindingResult.hasErrors()) {
 		return "registration";
 	}
 	
-	User user = registrationForm.toUser(passwordEncoder);
-	user.getRoles().add(roleRepo.findByName("User"));
-  userRepo.save(user);
+	User user = userRepo.findByEmail(registrationForm.getEmail());
+	if (user != null) {
+		model.addAttribute("usernameError", "Пользователь с такой почтой уже существует.");
+    return "registration";
+	}
+	
+	User newUser = registrationForm.toUser(passwordEncoder);
+	newUser.getRoles().add(roleRepo.findByName("User"));
+  userRepo.save(newUser);
   return "redirect:/login";
   }
  

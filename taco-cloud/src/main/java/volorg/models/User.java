@@ -41,11 +41,20 @@ public class User implements UserDetails {
 	private Long id;
 	
 	@NonNull
+	@NotNull(message="Введите email")
+	@Size(min=6, message="Введите email")
 	private String email;
+	
 	@NonNull
+	@NotNull(message="Введите имя")
+	@Size(min=2, message="Введите имя")
 	private String name;
+	
 	@NonNull
+	@NotNull(message="Введите фамилию")
+	@Size(min=2, message="Введите фамилию")
 	private String surName;
+	
 	@NonNull
 	private String password;
 
@@ -63,6 +72,31 @@ public class User implements UserDetails {
 	
 	@ManyToMany(mappedBy = "users")
 	private List<Chat> chats = new ArrayList<Chat>();
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+	    return true;
+		}
+	
+		if (!(obj instanceof User)) {
+		    return false;
+		}
+		
+		User other = (User) obj;
+
+		return id == other.id;
+	}
+	
+	@Override
+  public int hashCode() {
+	 return this.hashCode();
+  }
+	
+	@Override
+  public String toString() {
+      return name + surName;
+  }
 
 	@Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -20,7 +20,11 @@
         <main role="main" class="profile">
             <div class="profile-wrapper">
 					    <h1 class="profile__title">Регистрация</h1>
-					    <form th:action="${'/register'}" th:object="${registrationForm}" method="post">					    
+					    <form th:action="${'/register'}" th:object="${registrationForm}" method="post">				
+					    
+  					          <div class="validationError" th:text="${usernameError}">
+                        
+                      </div>	    
 					
 					            <div class="form-group">
 					            		<span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Неверные данные<br /></span>
@@ -51,10 +55,10 @@
 					                   class="button-secondary profile__button" />
 					    </form>
 
-			    <div class="profile__links">
-			        <a class="main-link profile__main-link" th:href="@{/login}">Войти</a>
-			        <a class="main-link profile__main-link" th:href="@{/index}">На главную</a>
-			    </div>
+    			    <div class="profile__links">
+    			        <a class="main-link profile__main-link" th:href="@{/login}">Войти</a>
+    			        <a class="main-link profile__main-link" th:href="@{/}">На главную</a>
+    			    </div>
 					</div>
         </main>
     </div>

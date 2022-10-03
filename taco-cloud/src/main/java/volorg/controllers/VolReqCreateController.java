@@ -45,7 +45,7 @@ public class VolReqCreateController {
 	  volRequest.setStatus("Ожидание");
 	  
 	  volReqRepo.save(volRequest);
-	  return "redirect:/index";
+	  return "redirect:/";
 	}
 
 }

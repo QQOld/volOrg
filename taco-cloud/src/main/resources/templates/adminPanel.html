@@ -19,13 +19,13 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-4">
-                    <a class="logo" href="/index">Волонтёры33</a>
+                    <a class="logo" th:href="@{/}">Волонтёры33</a>
                 </div>
                 <div class="col-4">
                     <ul class="navbar-list">
-                        <li class="navbar-list__item"><a href="/index">Главная</a></li>
-                        <li class="navbar-list__item"><a href="/index">Новости</a></li>
-                        <li class="navbar-list__item"><a href="/index">О нас</a></li>
+                        <li class="navbar-list__item"><a th:href="@{/}">Главная</a></li>
+                        <li class="navbar-list__item"><a th:href="@{/}">Новости</a></li>
+                        <li class="navbar-list__item"><a th:href="@{/}">О нас</a></li>
                     </ul>
                 </div>
                 <div class="col-4">               
@@ -49,7 +49,7 @@
         <main role="main" class="main-menu">
             <h1 class="display-4">Управление</h1>
   
-            <a class="main-link profile__main-link" th:href="@{/adminPanel/}">Добавить пользователя</a>
+            <a class="main-link profile__main-link" th:href="@{/adminPanel/createUser}">Добавить пользователя</a>
             
             <a class="main-link profile__main-link" th:href="@{/adminPanel/volRequests}">Заявки в волонтёры</a>
             
@@ -60,11 +60,11 @@
             <table class="table">
                 <tr><th>Имя</th><th>Email</th><th></th></tr>
                   <tr th:each="u : ${users}">
-                      <td th:text="${u.getSurName}"></td> 
+                      <td th:text="${u.getSurName + ' ' + u.getName}"></td> 
                       <td th:text="${u.getEmail}"></td>
                       <td>
-                        <form asp-controller="Admin" asp-action="Delete" asp-route-id="@user.Id" method="post">
-                          <a class="btn btn-sm btn-primary" asp-controller="Admin" asp-action="Edit" asp-route-id="@user.Id">Изменить</a>
+                        <form method="post" th:action="@{/adminPanel/delete/{id}(id=${u.getId})}"}>
+                          <a class="btn btn-sm btn-primary" th:href="@{/adminPanel/edit/{id}(id=${u.getId})}">Изменить</a>
                           <button type="submit" class="btn btn-sm btn-danger">
                             Удалить
                           </button>
@@ -81,7 +81,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-3 offset-1">
-                    <a href="/index" class="logo footer__logo">Волонтёры33</a>
+                    <a href="/" class="logo footer__logo">Волонтёры33</a>
                     <p class="footer__text">Волонтёрская организация по поиску людей</p>
                     <div class="footer__icons">
                         <a href="" class="footer__icon">
@@ -99,10 +99,10 @@
                     <h3 class="footer__subtitle">Навигация</h3>
                     <ul class="footer__list">
                         <li class="footer__item footer__link">
-                            <a href="/home/index">В начало</a>
+                            <a th:href="@{/}">В начало</a>
                         </li>
-                        <li class="footer__item footer__link"><a href="#">Новости</a></li>
-                        <li class="footer__item footer__link"><a href="#">О нас</a></li>
+                        <li class="footer__item footer__link"><a th:href="@{/}">Новости</a></li>
+                        <li class="footer__item footer__link"><a th:href="@{/}">О нас</a></li>
                     </ul>
                 </div>
                 <div class="col-3">

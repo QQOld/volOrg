@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+<head>
+    <title>Заявка в волонтёры</title>
+</head>
+
+  <div layout:fragment="content">
+     <main role="main" class="main-menu" th:object="${operation}">
+        <table class="table table-bordered">
+          <tr>
+              <th>Фото</th>
+              <td><img class="search-photo"></td>
+          </tr>
+          <tr>
+              <th>ФИО</th>
+              <td th:text="*{getSearchRequest.getFullName}"></td>
+          </tr>
+          <tr>
+              <th>Возраст</th>
+              <td th:text="*{getSearchRequest.getAge}"></td >
+          </tr>
+          <tr>
+              <th>Пол</th>
+              <td th:text="*{getSearchRequest.getSex}"></td>
+          </tr>
+          <tr>
+              <th>Область пропажи</th>
+              <td th:text="*{getSearchRequest.getMissArea}"></td>
+          </tr>
+          <tr>
+              <th>Время пропажи</th>
+              <td th:text="*{getSearchRequest.getMissTime}"></td>
+          </tr>
+          <tr>
+              <th>Доп. информация</th>
+              <td th:text="*{getSearchRequest.getAddInf}"></td >
+          </tr>
+          <tr>
+              <th>Список участников</th>
+              <td>
+                 <ul>
+                    <li th:each="u : ${operation.getUsers}">
+                      <span th:text="${u.getSurName + ' ' + u.getName}"></span>                   
+                    </li >
+                 </ul>
+              </td>
+          </tr>
+      </table>
+      
+      <a class="btn btn-sm btn-primary profile__main-link" sec:authorize="hasAuthority('Volunteer')" th:if="${isAllowed}" th:href="@{/operations/{id}/join(id=${operation.getId})}">Присоединиться</a>
+      <a class="main-link profile__main-link" onclick="history.back();">Назад</a>    
+      
+      <form th:action="@{/adminPanel/operations/{id}/addComment(id=${operation.getId})}" sec:authorize="hasAuthority('Admin')" th:object="${comment}" method="post">
+        <div>
+            <div class="form-group">
+                <label class="control-label profile__label">Добавить информацию</label><br />
+                <input value="*{id}" th:field="*{id}" type="hidden"/>
+                <textarea class="form-control profile__input" th:field="*{text}"></textarea>
+                <span></span>
+            </div>
+    
+            <input type="submit" value="Добавить" class="button-secondary profile__button" />
+    
+        </div>
+      </form>
+
+
+      <table class="table">
+          <tr th:each="c : ${operation.comments}">
+            <td th:text="${c.text}"></td>
+            <td><a class="btn btn-sm btn-danger" sec:authorize="hasAuthority('Admin')" th:href="@{/adminPanel/operations/{opId}/deleteComment/{id}(opId=${operation.getId}, id=${c.getId})}">Удалить</a></td>
+          </tr>   
+      </table>
+     </main>
+          
+  </div>
+</html>     

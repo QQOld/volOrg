@@ -30,8 +30,7 @@ public class SearchReqCreateController {
 	  this.searchReqRepo = searchReqRepo;
 	  this.userRepo = userRepo;
 	}
-	
-	
+		
 	@GetMapping
 	public String searchReq(@ModelAttribute SearchRequest searchRequest) {
 	  return "searchReq";
@@ -47,7 +46,7 @@ public class SearchReqCreateController {
 	  searchRequest.setUser(curUser);
 	  
 	  searchReqRepo.save(searchRequest);
-	  return "redirect:/index";
+	  return "redirect:/";
 	}
 
 }

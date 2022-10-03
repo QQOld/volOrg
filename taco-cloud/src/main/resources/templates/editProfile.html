@@ -41,16 +41,49 @@
                           <span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Неверные данные<br /></span>                     
                           <label for="email" class="control-label profile__label">Электронный адрес:</label><br />
                           <input th:field="*{email}" class="form-control profile__input" />
-                      </div>     
+                      </div>
+                      
+                      <div class="form-group" sec:authorize="hasAuthority('Volunteer')">
+                          <span class="validationError"
+                                th:if="${#fields.hasErrors('volRequest.phone')}"
+                                th:errors="*{volRequest.phone}">Неверные данные</span><br />
+                          <label for="phone" class="control-label profile__label">Телефон</label><br />
+                          <input th:field="*{volRequest.phone}" class="form-control profile__input" />
+                      </div>
+          
+                      <div class="form-group" sec:authorize="hasAuthority('Volunteer')">
+                          <span class="validationError"
+                                th:if="${#fields.hasErrors('volRequest.age')}"
+                                th:errors="*{volRequest.age}">Неверные данные</span><br />
+                          <label for="age" class="control-label profile__label">Возраст</label><br />
+                          <input th:field="*{volRequest.age}" class="form-control profile__input" type="number" />                
+                      </div>
+          
+                      <div class="form-group profile__input" sec:authorize="hasAuthority('Volunteer')">
+                          <span class="validationError"
+                                th:if="${#fields.hasErrors('volRequest.sex')}"
+                                th:errors="*{volRequest.sex}">Неверные данные</span><br />
+                          <label for="sex" class="control-label profile__label">Пол:</label><br />
+                          <input type="radio" th:field="*{volRequest.sex}" value="Мужской" />Мужской<br />
+                          <input type="radio" th:field="*{volRequest.sex}" value="Женский" />Женский<br />               
+                      </div>
+          
+                      <div class="form-group" sec:authorize="hasAuthority('Volunteer')">
+                          <span class="validationError"
+                                th:if="${#fields.hasErrors('volRequest.livArea')}"
+                                th:errors="*{volRequest.livArea}">Неверные данные</span><br />
+                          <label for="livArea" class="control-label profile__label">Область проживания</label><br />
+                          <input th:field="*{volRequest.livArea}" class="form-control profile__input" />               
+                      </div>
                        
                       <input type="submit" value="Сохранить" class="button-secondary profile__button" />
                   </div>
               </form>
               <div class="profile__links">
-                  <a class="change-password profile__change-password">Сменить пароль</a>                        
+                  <a th:href="@{/profile/changePassword}" class="change-password profile__change-password">Сменить пароль</a>                        
                   <a sec:authorize="hasAuthority('Admin')" th:href="@{/adminPanel}" class="profile__main-link main-link">Управление</a>
-                  <a sec:authorize="hasAuthority('Admin')" th:href="@{/index}" class="profile__main-link main-link">Чаты</a>
-                  <a class="main-link" th:href="@{/index}">На главную</a>
+                  <a sec:authorize="hasAuthority('Volunteer')" th:href="@{/profile/chats}" class="profile__main-link main-link">Чаты</a>
+                  <a class="main-link" th:href="@{/}">На главную</a>
               </div>
           </div>
         </main>

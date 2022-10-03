@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+<head>
+    <title>Редактирование профиля</title>
+</head>
+
+  <div layout:fragment="content">
+    <main role="main" class="main-menu">
+      <div class="profile-wrapper">
+              <h1 class="profile__title">Редактирование профиля</h1>
+              <form th:action="@{/adminPanel/edit/{id}(id=${editForm.getId})}" th:object="${editForm}" method="post">             
+          
+                      <div class="form-group">
+                          <span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Неверные данные<br /></span>
+                          <label for="name" class="control-label profile__label">Имя:</label><br />
+                          <input th:field="*{name}" class="form-control profile__input" />                  
+                      </div>
+          
+                      <div class="form-group">
+                          <span class="validationError" th:if="${#fields.hasErrors('surName')}" th:errors="*{surName}">Неверные данные<br /></span>                     
+                          <label for="surName" class="control-label profile__label">Фамилия:</label><br />
+                          <input th:field="*{surName}" class="form-control profile__input" />
+                      </div>           
+          
+                      <div class="form-group">
+                          <span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Неверные данные<br /></span>                     
+                          <label for="email" class="control-label profile__label">Электронный адрес:</label><br />
+                          <input th:field="*{email}" class="form-control profile__input" />
+                      </div>       
+          
+                      <input type="submit"
+                             value="Сохранить"
+                             class="button-secondary profile__button" />
+              </form>
+
+              <div class="profile__links">
+                  <a class="main-link profile__main-link" th:href="@{/adminPanel}">Назад</a>
+              </div>
+          </div>
+    </main>
+  </div>
+</html>

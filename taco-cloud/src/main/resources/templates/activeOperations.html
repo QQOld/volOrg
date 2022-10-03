@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+<head>
+    <title>Операции</title>
+</head>
+
+  <div layout:fragment="content">
+    <main role="main" class="main-menu">
+      <h1 class="display-4">Операции</h1><br />
+          <div class="container">             
+            <table class="table">
+                <tr><th>Имя</th><th>Возраст</th><th></th></tr>
+                <tr th:each="op : ${operations}">
+                  <td th:text="${op.getSearchRequest.getFullName}"></td>
+                  <td th:text="${op.getSearchRequest.getAge}"></td>
+                  <td>
+                    <a class="btn btn-sm btn-outline-secondary" th:href="@{/operations/{id}(id=${op.getId})}">Просмотреть</a>
+                  </td>
+                </tr >
+            </table>                             
+          </div>    
+        <br />
+        <a class="main-link" th:href="@{/}">Назад</a>
+    </main>
+  </div>
+</html>

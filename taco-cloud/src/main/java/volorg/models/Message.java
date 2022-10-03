@@ -1,5 +1,7 @@
 package volorg.models;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -18,16 +20,16 @@ public class Message {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long id;
 	
-    public String userName;
-    
-    public String text;
-    
-    public Date timestamp;
-    
-    @ManyToOne
-    public User user;
-    
-    @ManyToOne(optional = false)
-    public Chat chat;
+  private String userName;
+  
+  private String text;
+  
+  private LocalDateTime timestamp;
+  
+  @ManyToOne
+  public User user;
+  
+  @ManyToOne(optional = false)
+  public Chat chat;
 
 }

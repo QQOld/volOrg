@@ -19,13 +19,13 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-4">
-                    <a class="logo" href="/index">Волонтёры33</a>
+                    <a class="logo" href="/">Волонтёры33</a>
                 </div>
                 <div class="col-4">
                     <ul class="navbar-list">
-                        <li class="navbar-list__item"><a href="/index">Главная</a></li>
-                        <li class="navbar-list__item"><a href="/index">Новости</a></li>
-                        <li class="navbar-list__item"><a href="/index">О нас</a></li>
+                        <li class="navbar-list__item"><a href="/">Главная</a></li>
+                        <li class="navbar-list__item"><a href="/">Новости</a></li>
+                        <li class="navbar-list__item"><a href="/">О нас</a></li>
                     </ul>
                 </div>
                 <div class="col-4">               
@@ -60,8 +60,8 @@
                                       <td th:text="${op.getSearchRequest.getFullName}"></td>
                                       <td th:text="${op.getStatus}"></td>
                                       <td>
-                                          <a class="btn btn-sm btn-outline-primary">Начать</a>
-                                          <a class="btn btn-sm btn-outline-secondary">Просмотреть</a>
+                                          <a class="btn btn-sm btn-outline-primary" th:href="@{/adminPanel/operations/{id}/start(id=${op.getId})}">Начать</a>
+                                          <a class="btn btn-sm btn-outline-secondary" th:href="@{/operations/{id}(id=${op.getId})}">Просмотреть</a>
                                       </td>
                                   </tr >
                           </table>
@@ -78,8 +78,8 @@
                                 <td th:text="${op.getSearchRequest.getFullName}"></td>
                                 <td th:text="${op.getStatus}"></td>
                                 <td>
-                                    <a class="btn btn-sm btn-outline-primary">Начать</a>
-                                    <a class="btn btn-sm btn-outline-secondary">Просмотреть</a>
+                                    <a class="btn btn-sm btn-outline-primary" th:href="@{/adminPanel/operations/{id}/stop(id=${op.getId})}">Завершить</a>
+                                    <a class="btn btn-sm btn-outline-secondary" th:href="@{/operations/{id}(id=${op.getId})}">Просмотреть</a>
                                 </td>
                               </tr >
                           </table>
@@ -96,8 +96,7 @@
                                     <td th:text="${op.getSearchRequest.getFullName}"></td>
                                     <td th:text="${op.getStatus}"></td>
                                     <td>
-                                        <a class="btn btn-sm btn-outline-primary">Начать</a>
-                                        <a class="btn btn-sm btn-outline-secondary">Просмотреть</a>
+                                      <a class="btn btn-sm btn-outline-secondary" th:href="@{/operations/{id}(id=${op.getId})}">Просмотреть</a>
                                     </td>
                                   </tr >
                           </table>
