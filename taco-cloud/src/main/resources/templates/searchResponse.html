@@ -52,7 +52,7 @@
       <table th:object="${searchRequest}" class="table table-bordered">
           <tr>
               <th>Фото</th>
-              <td th:text="Фото" ></td>
+              <td><img class="search-photo" th:src="*{getPhoto}"></td>
           </tr>
           <tr>
               <th>ФИО</th>

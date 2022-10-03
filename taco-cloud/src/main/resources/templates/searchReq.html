@@ -10,7 +10,7 @@
   	<main role="main" class="main-menu">
       <h1 class="profile__title">Заявка на поиск</h1>
 
-    <form th:action="${'/searchReq'}" th:object="${searchRequest}" method="post">
+    <form th:action="${'/searchReq'}" th:object="${searchRequest}" method="post" enctype="multipart/form-data">
         
         <div>
             <div class="form-group">
@@ -67,7 +67,7 @@
                       th:if="${#fields.hasErrors('photo')}"
                       th:errors="*{photo}">Неверные данные</span><br />
                 <label for="photo" class="control-label profile__label">Фото:</label><br />
-                <input th:field="*{photo}" type="file" accept="image/*" class="form-control-file profile__input" />                
+                <input th:name="image" name="image" type="file" accept="image/*" class="form-control-file profile__input" />                
             </div>
 
             <input type="submit" value="Отправить" class="button-secondary profile__button" />

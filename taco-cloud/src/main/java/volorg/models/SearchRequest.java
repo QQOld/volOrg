@@ -40,7 +40,6 @@ public class SearchRequest {
   
   private String addInf;
   
-  @NotNull(message="Прикрепите фото")
   private String photo;
  
   private String status;

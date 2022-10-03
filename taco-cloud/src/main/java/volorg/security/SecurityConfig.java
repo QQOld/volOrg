@@ -49,8 +49,8 @@ public class SecurityConfig{
 			
 		.authorizeRequests()
 			.antMatchers("/volReq", "/searchReq").hasAuthority("User")
-			.antMatchers("/adminPanel/**").hasRole("Admin")
-			.antMatchers("/profile/chats").hasRole("Volunteer")
+			.antMatchers("/adminPanel/**").hasAuthority("Admin")
+			.antMatchers("/profile/chats").hasAuthority("Volunteer")
 		  .antMatchers("/", "/**").permitAll()
 		  
 			.and()
