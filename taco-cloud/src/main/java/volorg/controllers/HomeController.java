@@ -33,15 +33,13 @@ public class HomeController {
 	  this.roleRepo = roleRepo;
 	}
 	
-	@ModelAttribute(name = "operations")
-	public List<Operation> getOperations() {
-	  List<Operation> operations = new ArrayList<>();
-	  operationRepo.findAll().forEach(i -> operations.add(i));
-	  return operations;
-	}
-	
 	@GetMapping
-	public String showHomeView() {
+	public String showHomeView(Model model) {
+		List<Operation> operations = new ArrayList<>();
+	  operationRepo.findAll().forEach(o -> {
+	  	if(!o.getStatus().equals("Завершённая")) operations.add(o);
+	  });
+	  model.addAttribute("operations", operations);
 	  return "index";
 	}
 		

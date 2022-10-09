@@ -57,7 +57,11 @@ public class SearchReqCreateController {
 	  
 	  searchReqRepo.save(searchRequest);
 	  
-	  FileUploadUtil.saveFile("src/main/resources/static/imgsearch/", fileName, multipartFile);
+	  System.out.print(fileName);
+	  System.out.print(!fileName.isEmpty());
+	  if(!fileName.isEmpty()) {
+	  	FileUploadUtil.saveFile("src/main/resources/static/imgsearch/", fileName, multipartFile);
+	  }
 	  
 	  return "redirect:/";
 	}

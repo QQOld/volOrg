@@ -133,8 +133,8 @@
                     <!-- Additional required wrapper -->
                     <div class="swiper-wrapper">
                         <!-- Slides -->
-                        <div th:each="op : ${operations}" class="swiper-slide">
-                        	<img class="swiper-image" src="${op.searchRequest.photo}" alt="" />
+                        <div th:each="op : ${operations}" class="swiper-slide">                     
+                        	<img class="swiper-image" th:src="@{${op.searchRequest.photo}}" alt="" />
                         </div>                      
                     </div>
                 </div>
@@ -184,10 +184,10 @@
         </div>
     </footer>
 
-    <script src="@{/js/swiper-bundle.min.js}"></script>
-    <script src="@{/js/main.js}"></script>
-    <script src="@{/lib/jquery/dist/jquery.min.js}"></script>
-    <script src="@{/lib/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
-    <script src="@{/js/site.js}" asp-append-version="true"></script>
+    <script th:src="@{/js/swiper-bundle.min.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/lib/jquery/dist/jquery.min.js}"></script>
+    <script th:src="@{/lib/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/site.js}" asp-append-version="true"></script>
 </body>
 </html>
