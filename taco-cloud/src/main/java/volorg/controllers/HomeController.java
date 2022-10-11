@@ -77,7 +77,7 @@ public class HomeController {
   	Operation operation = operationRepo.findById(id).orElse(null);
   	if(operation != null && operation.getStatus().equals("Активная")) {
   		operation.getUsers().add(curUser);
-  		operation.getSearchRequest().getChat().getUsers().add(curUser);  		
+  		operation.getSearchRequest().getOperation().getChat().getUsers().add(curUser);  		
   		operationRepo.save(operation);
   	}
   	return "redirect:/operations/{id}";

@@ -16,8 +16,8 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long id;
     
-    public String text;
-    
-    @ManyToOne(optional = false)
-    public Operation operation;
+  public String text;
+  
+  @ManyToOne(optional = false)
+  public Operation operation;
 }

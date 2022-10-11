@@ -21,7 +21,7 @@
                 <div class="message" th:each="m : ${chat.messages}">
                     <span class="message__username" th:text="${m.userName}"></span>
                     <p class="message__text" th:text="${m.text}"></p>
-                    <span class="message__time" th:text="${m.timestamp}"></span>
+                    <span class="message__time" th:text="${m.getFormatedTime()}"></span>
                 </div>
             </div>
             

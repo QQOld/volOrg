@@ -47,9 +47,6 @@ public class SearchRequest {
   @OneToOne(cascade = CascadeType.ALL, mappedBy = "searchRequest")
   private Operation operation;
   
-  @OneToOne(cascade = CascadeType.ALL, mappedBy ="searchRequest")
-  private Chat chat;
-  
   @ManyToOne
   private User user;
 }

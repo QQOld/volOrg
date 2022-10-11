@@ -1,5 +1,6 @@
 package volorg.models;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -24,12 +25,17 @@ public class Message {
   
   private String text;
   
-  private LocalDateTime timestamp;
+  private Date timestamp;
   
   @ManyToOne
   public User user;
   
   @ManyToOne(optional = false)
   public Chat chat;
+  
+  public String getFormatedTime() {
+  	SimpleDateFormat formatDate = new SimpleDateFormat("dd.MM HH:mm");
+		return formatDate.format(timestamp);
+  }
 
 }

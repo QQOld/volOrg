@@ -23,7 +23,7 @@ public class Chat {
 	private Long id;
 	
 	@OneToOne(optional = false)
-	private SearchRequest searchRequest;
+	private Operation operation;
     
 	@OneToMany(cascade = CascadeType.ALL, mappedBy ="chat")
 	private List<Message> messages = new ArrayList<Message>();

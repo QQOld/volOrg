@@ -1,5 +1,6 @@
 package volorg.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -32,7 +33,7 @@ public class Role implements GrantedAuthority {
   private String name;
 
   @ManyToMany(mappedBy = "roles")
-  private Set<User> users;
+  private List<User> users = new ArrayList<User>();
 
   @Override
   public String getAuthority() {

@@ -1,9 +1,11 @@
 package volorg.controllers;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Date;
 
 import javax.validation.Valid;
 
@@ -121,7 +123,7 @@ public class ProfileController {
 				Message message = new Message();
 				message.setText(text);
 				message.setUser(curUser);
-				message.setTimestamp(LocalDateTime.now());
+				message.setTimestamp(new Date());
 				message.setUserName(curUser.getSurName() + " " + curUser.getName());
 				message.setChat(chat);
 				chat.getMessages().add(message);

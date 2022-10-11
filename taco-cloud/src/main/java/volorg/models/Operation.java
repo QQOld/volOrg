@@ -29,6 +29,9 @@ public class Operation {
   
   @ManyToMany
   private List<User> users = new ArrayList<User>();
+
+  @OneToOne(cascade = CascadeType.ALL, mappedBy ="operation")
+  private Chat chat;
   
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "operation")
   private List<Comment> comments = new ArrayList<Comment>();

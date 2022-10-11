@@ -186,15 +186,16 @@ public class AdminController {
   	SearchRequest searchRequest = searchReqRepo.findById(id).orElse(null);
   	if(searchRequest != null) {
   		searchRequest.setStatus("Принята");
-  		Chat chat = new Chat();
-  		chat.setSearchRequest(searchRequest);
-  		chat.getUsers().add(curUser);
-  		searchRequest.setChat(chat);
   		
   		Operation operation = new Operation();
   		operation.setStatus("Ожидание");
   		operation.setSearchRequest(searchRequest);
   		searchRequest.setOperation(operation);
+  		
+  		Chat chat = new Chat();
+  		chat.setOperation(searchRequest.getOperation());
+  		chat.getUsers().add(curUser);
+  		searchRequest.getOperation().setChat(chat);
   		
   		searchReqRepo.save(searchRequest);
   	}
@@ -254,8 +255,8 @@ public class AdminController {
   public String stopOperation(@PathVariable long id) {
   	Operation operation = operationRepo.findById(id).orElse(null);
   	if(operation != null) {
-  		long chatId = operation.getSearchRequest().getChat().getId();
-  		operation.getSearchRequest().setChat(null);
+  		long chatId = operation.getSearchRequest().getOperation().getChat().getId();
+  		operation.getSearchRequest().getOperation().setChat(null);
   		chatRepo.deleteById(chatId);
   		operation.setStatus("Завершённая");
   		operationRepo.save(operation);

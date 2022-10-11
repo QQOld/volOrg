@@ -12,7 +12,7 @@
       <table class="table">
         <tr><th>Чат</th><th></th><th></th></tr>
           <tr th:each="c : ${chats}">
-            <td th:text="${c.searchRequest.fullName}"></td>
+            <td th:text="${c.operation.searchRequest.fullName}"></td>
             <td>
               <a class="btn btn-sm btn-primary" th:href="@{/profile/chats/{id}(id=${c.getId})}">Просмотреть</a>
             </td>

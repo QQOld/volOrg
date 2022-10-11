@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/taco
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/volorg
     username: qq2
     driver-class-name: com.mysql.jdbc.Driver
   jpa:

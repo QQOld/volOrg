@@ -57,8 +57,6 @@ public class SearchReqCreateController {
 	  
 	  searchReqRepo.save(searchRequest);
 	  
-	  System.out.print(fileName);
-	  System.out.print(!fileName.isEmpty());
 	  if(!fileName.isEmpty()) {
 	  	FileUploadUtil.saveFile("src/main/resources/static/imgsearch/", fileName, multipartFile);
 	  }
