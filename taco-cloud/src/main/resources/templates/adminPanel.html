@@ -59,7 +59,7 @@
             
             <table class="table">
                 <tr><th>Имя</th><th>Email</th><th></th></tr>
-                  <tr th:each="u : ${users}">
+                  <tr th:each="u : ${users.getContent()}">
                       <td th:text="${u.getSurName + ' ' + u.getName}"></td> 
                       <td th:text="${u.getEmail}"></td>
                       <td>
@@ -73,6 +73,14 @@
                   </tr>
             </table>
             <br />
+            <ul th:if="${users.totalPages > 0}" class="pagination">
+              <li class="page-item" th:classappend="${i==users.number + 1} ? active" th:each="i: ${#numbers.sequence(1, users.totalPages)}">
+                <a  th:href="@{/adminPanel(page=${i})}"
+                    th:text=${i}
+                    th:class="page-link">
+                </a>
+              </li>  
+            </ul>
             <a class="main-link" th:href="@{/profile}">Назад</a>
         </main>
     </div>

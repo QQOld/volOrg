@@ -9,6 +9,10 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import volorg.models.Chat;
 import volorg.models.Comment;
@@ -62,8 +67,10 @@ public class AdminController {
   }
   
   @GetMapping
-  public String getAdminPanel(Model model) {
-  	Iterable<User> users = userRepo.findAll();
+  public String getAdminPanel(Model model, @RequestParam("page") Optional<Integer> page) {
+  	int currentPage = page.orElse(1);
+  	Pageable pageable = PageRequest.of(currentPage - 1, 5, Sort.by("name").ascending());
+  	Page<User> users = userRepo.findAll(pageable);
   	model.addAttribute("users", users);
     return "adminPanel";
   }
@@ -115,6 +122,8 @@ public class AdminController {
   public String deleteUser(@PathVariable long id) {
   	User user = userRepo.findById(id).orElse(null);
   	if(user != null) {
+  		user.getOperations().clear();
+  		user.getRoles().clear();
   		userRepo.deleteById(id);
   	}
     return "redirect:/adminPanel";
@@ -124,8 +133,10 @@ public class AdminController {
   //Vol Requests
   
   @GetMapping("/volRequests")
-  public String getVolRequests(Model model) {
-  	List<VolRequest> volRequests = volReqRepo.findByStatus("Ожидание");
+  public String getVolRequests(Model model, @RequestParam("page") Optional<Integer> page) {
+  	int currentPage = page.orElse(1);
+  	Pageable pageable = PageRequest.of(currentPage - 1, 2);
+  	Page<VolRequest> volRequests = volReqRepo.findByStatus("Ожидание", pageable);
   	model.addAttribute("volRequests", volRequests);
     return "volRequests";
   }
@@ -165,8 +176,10 @@ public class AdminController {
   //Search Requests
   
   @GetMapping("/searchRequests")
-  public String getSearchRequests(Model model) {
-  	List<SearchRequest> searchRequests = searchReqRepo.findByStatus("Ожидание");
+  public String getSearchRequests(Model model, @RequestParam("page") Optional<Integer> page) {
+  	int currentPage = page.orElse(1);
+  	Pageable pageable = PageRequest.of(currentPage - 1, 2);
+  	Page<SearchRequest> searchRequests = searchReqRepo.findByStatus("Ожидание", pageable);
   	model.addAttribute("searchRequests", searchRequests);
     return "searchRequests";
   }

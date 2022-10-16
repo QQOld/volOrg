@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,10 +37,15 @@ public class VolReqCreateController {
 	}
 	
 	@PostMapping
-	public String addVolReq(@Valid VolRequest volRequest, BindingResult bindingResult, @AuthenticationPrincipal User curUser) {
+	public String addVolReq(@Valid VolRequest volRequest, BindingResult bindingResult, @AuthenticationPrincipal User curUser, Model model) {
 	  if (bindingResult.hasErrors()) {
 	    return "volReq";
 	  }
+	  
+	  if (userRepo.findByEmail(curUser.getEmail()).getVolRequest() != null) {
+			model.addAttribute("usernameError", "Вы уже подали заявку в волнтёры.");
+	    return "volReq";
+		}
 	 
 	  volRequest.setUser(curUser);
 	  volRequest.setStatus("Ожидание");

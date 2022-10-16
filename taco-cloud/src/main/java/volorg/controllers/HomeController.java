@@ -2,8 +2,12 @@ package volorg.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import volorg.models.Comment;
 import volorg.models.Operation;
@@ -44,11 +49,13 @@ public class HomeController {
 	}
 		
 	@GetMapping("/activeOperations")
-  public String getOperations(Model model) {
-  	List<Operation> operations = (List<Operation>) operationRepo.findAll();
-  	List<Operation> activeOperations = new ArrayList<Operation>();
-  	operations.forEach(op -> { if(op.getStatus().equals("Активная")) activeOperations.add(op); });
-  	model.addAttribute("operations", activeOperations); 
+  public String getOperations(Model model, @RequestParam("page") Optional<Integer> page) {
+		int currentPage = page.orElse(1);
+  	Pageable pageable = PageRequest.of(currentPage - 1, 2);
+  	Page<Operation> operations = operationRepo.findByStatus("Активная", pageable);
+  	//List<Operation> activeOperations = new ArrayList<Operation>();
+//  	operations.forEach(op -> { if(op.getStatus().equals("Активная")) activeOperations.add(op); });
+  	model.addAttribute("operations", operations);
 
   	return "activeOperations";
   }
@@ -72,7 +79,7 @@ public class HomeController {
   }
 	
 	@GetMapping("/operations/{id}/join")
-	@PreAuthorize("hasRole('Volunteer')")
+	@PreAuthorize("hasAuthority('Volunteer')")
   public String joinOperation(@PathVariable long id, @AuthenticationPrincipal User curUser) {
   	Operation operation = operationRepo.findById(id).orElse(null);
   	if(operation != null && operation.getStatus().equals("Активная")) {

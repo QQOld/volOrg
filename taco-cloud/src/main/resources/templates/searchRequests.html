@@ -11,7 +11,7 @@
       <h1 class="display-4">Заявки на поиск</h1>
       <table class="table">
         <tr><th>Имя</th><th>Email</th><th></th></tr>
-          <tr th:each="s : ${searchRequests}">
+          <tr th:each="s : ${searchRequests.getContent()}">
             <td th:text="${s.getUser.getSurName + ' ' + s.getUser.getName}"></td>
             <td th:text="${s.user.getEmail}"></td>
             <td>
@@ -20,6 +20,14 @@
           </tr>
       </table>
       <br />
+      <ul th:if="${searchRequests.totalPages > 0}" class="pagination">
+        <li class="page-item" th:classappend="${i==searchRequests.number + 1} ? active" th:each="i: ${#numbers.sequence(1, searchRequests.totalPages)}">
+          <a  th:href="@{/adminPanel/searchRequests(page=${i})}"
+              th:text=${i}
+              th:class="page-link">
+          </a>
+        </li>  
+      </ul>
       <a class="main-link" th:href="@{/adminPanel}">Назад</a>
     </main>
   </div>

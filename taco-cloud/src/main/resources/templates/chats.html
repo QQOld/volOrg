@@ -11,13 +11,21 @@
       <h1 class="display-4">Чаты</h1>
       <table class="table">
         <tr><th>Чат</th><th></th><th></th></tr>
-          <tr th:each="c : ${chats}">
+          <tr th:each="c : ${chats.getContent()}">
             <td th:text="${c.operation.searchRequest.fullName}"></td>
             <td>
               <a class="btn btn-sm btn-primary" th:href="@{/profile/chats/{id}(id=${c.getId})}">Просмотреть</a>
             </td>
           </tr>
       </table>
+      <ul th:if="${chats.totalPages > 0}" class="pagination">
+        <li class="page-item" th:classappend="${i==chats.number + 1} ? active" th:each="i: ${#numbers.sequence(1, chats.totalPages)}">
+          <a  th:href="@{/profile/chats(page=${i})}"
+              th:text=${i}
+              th:class="page-link">
+          </a>
+        </li>  
+      </ul>
       <br />
       <a class="main-link" th:href="@{/profile}">Назад</a>
     </main>

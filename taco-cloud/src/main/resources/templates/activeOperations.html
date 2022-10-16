@@ -12,7 +12,7 @@
           <div class="container">             
             <table class="table">
                 <tr><th>Имя</th><th>Возраст</th><th></th></tr>
-                <tr th:each="op : ${operations}">
+                <tr th:each="op : ${operations.getContent()}">
                   <td th:text="${op.getSearchRequest.getFullName}"></td>
                   <td th:text="${op.getSearchRequest.getAge}"></td>
                   <td>
@@ -22,6 +22,14 @@
             </table>                             
           </div>    
         <br />
+        <ul th:if="${operations.totalPages > 0}" class="pagination">
+          <li class="page-item" th:classappend="${i==operations.number + 1} ? active" th:each="i: ${#numbers.sequence(1, operations.totalPages)}">
+            <a  th:href="@{/adminPanel/activeOperations(page=${i})}"
+                th:text=${i}
+                th:class="page-link">
+            </a>
+          </li>  
+        </ul>
         <a class="main-link" th:href="@{/}">Назад</a>
     </main>
   </div>

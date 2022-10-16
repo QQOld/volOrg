@@ -85,7 +85,7 @@
           <a class="btn btn-sm btn-danger req-button" th:href="@{{id}/decline(id=${searchRequest.getId})}">Отклонить</a>
         </div>
         <br />
-        <a class="main-link" th:href="@{/adminPanel/searchRequests}">Назад</a>
+        <a class="main-link" onclick="history.back();">Назад</a>
       </main>
     </div> 
 

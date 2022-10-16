@@ -21,6 +21,14 @@
           </tr>
       </table>
       <br />
+      <ul th:if="${volRequests.totalPages > 0}" class="pagination">
+        <li class="page-item" th:classappend="${i==volRequests.number + 1} ? active" th:each="i: ${#numbers.sequence(1, volRequests.totalPages)}">
+          <a  th:href="@{/adminPanel/volRequests(page=${i})}"
+              th:text=${i}
+              th:class="page-link">
+          </a>
+        </li>  
+      </ul>
       <a class="main-link" th:href="@{/adminPanel}">Назад</a>
     </main>
   </div>
