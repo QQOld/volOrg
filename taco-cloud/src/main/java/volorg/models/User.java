@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -53,6 +54,7 @@ public class User implements UserDetails {
 	@NonNull
 	@NotNull(message="Введите фамилию")
 	@Size(min=2, message="Введите фамилию")
+	@Column(name="sur_name")
 	private String surName;
 	
 	@NonNull

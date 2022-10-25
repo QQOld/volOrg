@@ -39,6 +39,7 @@ import volorg.repositories.RoleRepository;
 import volorg.repositories.SearchRequestRepository;
 import volorg.repositories.UserRepository;
 import volorg.repositories.VolRequestRepository;
+import volorg.repositories_log.VolReqLogRepository;
 import volorg.view_models.EditForm;
 import volorg.view_models.RegistrationForm;
 
@@ -53,9 +54,10 @@ public class AdminController {
 	private ChatRepository chatRepo;
 	private CommentRepository commentRepo;
 	private PasswordEncoder passwordEncoder;
+	private final VolReqLogRepository logRepo;
 	 
   @Autowired
-  public AdminController(UserRepository userRepo, RoleRepository roleRepo, VolRequestRepository volReqRepo, SearchRequestRepository searchReqRepo, OperationRepository operationRepo, ChatRepository chatRepo, CommentRepository commentRepo, PasswordEncoder passwordEncoder) {
+  public AdminController(UserRepository userRepo, RoleRepository roleRepo, VolRequestRepository volReqRepo, SearchRequestRepository searchReqRepo, OperationRepository operationRepo, ChatRepository chatRepo, CommentRepository commentRepo, PasswordEncoder passwordEncoder, VolReqLogRepository logRepo) {
     this.userRepo = userRepo;
     this.volReqRepo = volReqRepo;
     this.searchReqRepo = searchReqRepo;
@@ -64,6 +66,7 @@ public class AdminController {
     this.chatRepo = chatRepo;
     this.commentRepo = commentRepo;
     this.passwordEncoder = passwordEncoder;
+    this.logRepo = logRepo;
   }
   
   @GetMapping
@@ -165,7 +168,9 @@ public class AdminController {
   @GetMapping("/volRequests/{id}/decline")
   public String declineVolReq(@PathVariable long id) {
   	VolRequest volRequest = volReqRepo.findById(id).orElse(null);
+  	System.out.println(volRequest);
   	if(volRequest != null) {
+  		
   		volRequest.getUser().setVolRequest(null);
   		volReqRepo.deleteById(id);
   	}
